@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 #for heroku deployment 
 import dj_database_url
 
-DATABASES = { 'default': {dj_database_url.config()}
+DATABASES = { 'default': {dj_database_url.config()}}
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
