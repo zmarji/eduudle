@@ -37,7 +37,7 @@ class Migration(SchemaMigration):
             ('enddate', self.gf('django.db.models.fields.DateField')(null=True, db_column='endDate', blank=True)),
             ('duration', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
             ('categoryid', self.gf('django.db.models.fields.IntegerField')(null=True, db_column='categoryId', blank=True)),
-            ('slug', self.gf('django.db.models.fields.CharField')(max_length=50, db_column='shortDesc', blank=True)),
+            ('slug', self.gf('django.db.models.fields.CharField')(max_length=50, db_column='slug', blank=True)),
             ('tags', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('course', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
         ))
