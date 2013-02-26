@@ -1,5 +1,9 @@
 # Django settings for eduudle project.
 
+import os.path
+
+PROJECT_DIR = os.path.dirname(__file__)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -110,7 +114,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/Users/zmarji/Documents/workspace/eduudle/templates",
+    os.path.join(PROJECT_DIR, "templates"), #locally on "/Users/zmarji/Documents/workspace/eduudle/templates",    
 )
 
 INSTALLED_APPS = (
