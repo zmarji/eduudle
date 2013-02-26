@@ -40,7 +40,7 @@ class Course(models.Model):
     enddate = models.DateField(null=True, db_column='endDate', blank=True) # Field name made lowercase.
     duration = models.DateField(null=True, blank=True)
     categoryid = models.IntegerField(null=True, db_column='categoryId', blank=True) # Field name made lowercase.
-    slug = models.CharField(max_length=50, db_column='shortDesc', blank=True)
+    slug = models.CharField(max_length=50, db_column='slug', blank=True)
     tags = models.TextField(blank=True)
     course = models.FloatField(null=True, blank=True)
     class Meta:
