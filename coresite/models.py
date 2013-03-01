@@ -10,7 +10,7 @@
 from django.db import models
 
 class Category(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True)
     class Meta:
         db_table = u'category'
@@ -27,7 +27,7 @@ class InstructorToInstitution(models.Model):
 
 
 class Course(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     institutionid = models.IntegerField(null=True, db_column='institutionId', blank=True) # Field name made lowercase.
     #cost = models.ForeignKey(Institution, null=True, db_column='cost', blank=True)
     instructorid = models.IntegerField(null=True, db_column='instructorId', blank=True) # Field name made lowercase.
@@ -50,7 +50,7 @@ class Course(models.Model):
         return self.name
     
 class Institution(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True)
     url = models.CharField(max_length=250, blank=True)
     blurb = models.TextField(blank=True)
@@ -62,7 +62,7 @@ class Institution(models.Model):
         return self.name
 
 class Instructor(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     firstname = models.CharField(max_length=50, db_column='firstName', blank=True) # Field name made lowercase.
     lastname = models.CharField(max_length=50, db_column='lastName', blank=True) # Field name made lowercase.
     blurb = models.TextField(blank=True)
