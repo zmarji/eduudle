@@ -71,5 +71,5 @@ class Instructor(models.Model):
         db_table = u'instructor'
     
     def __unicode__(self):
-        self.firstname
+        return self.firstname
 
