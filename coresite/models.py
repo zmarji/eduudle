@@ -50,7 +50,7 @@ class Course(models.Model):
         return self.name
     
 class Institution(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, default=0)
     name = models.CharField(max_length=50, blank=True)
     url = models.CharField(max_length=250, blank=True)
     blurb = models.TextField(blank=True)
