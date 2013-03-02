@@ -62,7 +62,7 @@ class Institution(models.Model):
         return self.name
 
 class Instructor(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, default=0)
     firstname = models.CharField(max_length=50, db_column='firstName', blank=True) # Field name made lowercase.
     lastname = models.CharField(max_length=50, db_column='lastName', blank=True) # Field name made lowercase.
     blurb = models.TextField(blank=True)
