@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'Institution.id'
-        db.execute("DROP SEQUENCE institution_id_seq CASCADE")
+#        db.execute("DROP SEQUENCE institution_id_seq CASCADE")
         db.execute("CREATE SEQUENCE institution_id_seq")
         db.execute("SELECT setval('institution_id_seq', (SELECT MAX(id) FROM institution))")
         db.execute("ALTER TABLE institution ALTER COLUMN id SET DEFAULT nextval('institution_id_seq'::regclass)")
