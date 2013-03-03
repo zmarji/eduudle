@@ -7,55 +7,15 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
-
     def forwards(self, orm):
 
         # Changing field 'Institution.id'
-        #db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.AutoField')(primary_key=True))
-        db.execute("CREATE SEQUENCE institution_id_seq")
-        db.execute("SELECT setval('institution_id_seq', (SELECT MAX(id) FROM institution))")
-        db.execute("ALTER TABLE institution ALTER COLUMN id SET DEFAULT nextval('institution_id_seq'::regclass)")
-        db.execute("ALTER SEQUENCE institution_id_seq OWNED BY institution_id.seq")
-
-    # Changing field 'Instructor.id'
-        db.execute("CREATE SEQUENCE instructor_id_seq")
-        db.execute("SELECT setval('instructor_id_seq', (SELECT MAX(id) FROM instructor))")
-        db.execute("ALTER TABLE instructor ALTER COLUMN id SET DEFAULT nextval('instructor_id_seq'::regclass)")
-        db.execute("ALTER SEQUENCE insructor_id_seq OWNED BY instructor_id.seq")
-
-    # Changing field 'Category.id'
-        db.execute("CREATE SEQUENCE category_id_seq")
-        db.execute("SELECT setval('category_id_seq', (SELECT MAX(id) FROM category))")
-        db.execute("ALTER TABLE category ALTER COLUMN id SET DEFAULT nextval('category_id_seq'::regclass)")
-        db.execute("ALTER SEQUENCE category_id_seq OWNED BY category_id.seq")
-
-    # Changing field 'Course.id'
-        db.execute("CREATE SEQUENCE course_id_seq")
-        db.execute("SELECT setval('course_id_seq', (SELECT MAX(id) FROM course))")
-        db.execute("ALTER TABLE course ALTER COLUMN id SET DEFAULT nextval('course_id_seq'::regclass)")
-        db.execute("ALTER SEQUENCE course_id_seq OWNED BY course_id.seq")
+        db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.IntegerField')(primary_key=True))
 
     def backwards(self, orm):
-#        # Changing field 'Institution.id'
-        #db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.AutoField')(primary_key=True))
-        db.execute("CREATE SEQUENCE institution_id_seq")
-        db.execute("SELECT setval('institution_id_seq', (SELECT MAX(id) FROM institution))")
-        db.execute("ALTER TABLE instructor ALTER COLUMN id SET DEFAULT nextval('institution_id_seq'::regclass)")
 
-        # Changing field 'Instructor.id'
-        db.execute("CREATE SEQUENCE instructor_id_seq")
-        db.execute("SELECT setval('instructor_id_seq', (SELECT MAX(id) FROM instructor))")
-        db.execute("ALTER TABLE instructor ALTER COLUMN id SET DEFAULT nextval('instructor_id_seq'::regclass)")
-
-        # Changing field 'Category.id'
-        db.execute("CREATE SEQUENCE category_id_seq")
-        db.execute("SELECT setval('category_id_seq', (SELECT MAX(id) FROM category))")
-        db.execute("ALTER TABLE category ALTER COLUMN id SET DEFAULT nextval('category_id_seq'::regclass)")
-
-        # Changing field 'InstructorToInstitution.id'
-        db.execute("CREATE SEQUENCE course_id_seq")
-        db.execute("SELECT setval('course_id_seq', (SELECT MAX(id) FROM course))")
-        db.execute("ALTER TABLE course ALTER COLUMN id SET DEFAULT nextval('course_id_seq'::regclass)")
+        # Changing field 'Institution.id'
+        db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.AutoField')(primary_key=True))
 
     models = {
         'coresite.category': {
@@ -84,7 +44,7 @@ class Migration(SchemaMigration):
         'coresite.institution': {
             'Meta': {'object_name': 'Institution', 'db_table': "u'institution'"},
             'blurb': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'})
