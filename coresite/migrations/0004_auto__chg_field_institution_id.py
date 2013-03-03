@@ -10,15 +10,18 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'Institution.id'
-#        db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.IntegerField')(primary_key=True))
+        db.execute("DROP SEQUENCE institution_id_seq CASCADE")
         db.execute("CREATE SEQUENCE institution_id_seq")
         db.execute("SELECT setval('institution_id_seq', (SELECT MAX(id) FROM institution))")
         db.execute("ALTER TABLE institution ALTER COLUMN id SET DEFAULT nextval('institution_id_seq'::regclass)")
-        db.execute("ALTER SEQUENCE institution_id_seq OWNED BY institution_id.seq")
+        db.execute("ALTER SEQUENCE institution_id_seq OWNED BY institution.id")
+
     def backwards(self, orm):
 
         # Changing field 'Institution.id'
-        db.alter_column(u'institution', 'id', self.gf('django.db.models.fields.AutoField')(primary_key=True))
+        db.execute("ALTER TABLE institution ALTER COLUMN id DROP DEFAULT")
+        db.execute("DROP SEQUENCE institution_id_seq")
+
 
     models = {
         'coresite.category': {
@@ -47,7 +50,7 @@ class Migration(SchemaMigration):
         'coresite.institution': {
             'Meta': {'object_name': 'Institution', 'db_table': "u'institution'"},
             'blurb': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'id': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'})
